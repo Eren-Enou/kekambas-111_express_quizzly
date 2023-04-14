@@ -27,6 +27,15 @@ const userData = async (req, res, next) => {
                             }
                             avgScore
                         }
+                        submissions{
+                            id
+                            quizId
+                            quiz{
+                                title
+                                description
+                            }
+                            score
+                        }
                     }
                 }
             `;
@@ -45,10 +54,12 @@ const userData = async (req, res, next) => {
             );
 
             req.verifiedUser.quizzes = data.data.user.quizzes;
+            req.verifiedUser.submissions = data.data.user.submissions;
             next();
         } catch(err) {
             console.log(err);
             req.verifiedUser.quizzes = [];
+            req.verifiedUser.submissions = [];
             next();
         };
     };
