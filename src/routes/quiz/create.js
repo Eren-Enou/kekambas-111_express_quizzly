@@ -61,11 +61,10 @@ module.exports = async (req, res) => {
         );
 
         let quizSlug = data.data.createQuiz;
-        console.log(quizSlug);
+        res.redirect(`/quiz/${quizSlug}`)
 
     } catch(err){
         console.log(err)
+        res.redirect('/');
     }
-
-    res.redirect('/');
 }
